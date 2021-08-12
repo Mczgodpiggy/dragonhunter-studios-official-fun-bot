@@ -58,6 +58,10 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
     .setLabel('help page 4 unity commands')
     .setEmoji('🔧')
     .setValue('help4')
+    let option5 = new disbut.MessageMenuOption()
+    .setLabel('help page 5 support commands')
+    .setEmoji('🆘')
+    .setValue('help5')
     .setDescription('see the admin commands list!')
     let helpselect = new disbut.MessageMenu()
       .setID('help')
@@ -68,11 +72,12 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
       .addOption(option2)
       .addOption(option3)
       .addOption(option4)
+      .addOption(option5)
     const helpembed = new Discord.MessageEmbed()
     .setTitle("help menu")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
-    .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`\n" + `OWNER&HQ SERVER ONLY COMMANDS\n ${config.prefix}setstatus` + " `setstatus of the bot`" + "\nunity commands\n" + `${guildPrefix}avatar/${guildPrefix}av` + " `see a user's avatar`" + `\n${guildPrefix}bot-info` + " `see this bot's info`" + `\n${guildPrefix}panik ` + "`<first panik> <kalm> <2nd panik>`" + `\n${guildPrefix}reverse ` + "`<the text you want to reverse>`" + `\nserver admin commands\n${guildPrefix}setprefix` + " `<new-prefix>`")
-    .setFooter("page 1/4")
+    .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`\n" + `OWNER&HQ SERVER ONLY COMMANDS\n ${config.prefix}setstatus` + " `setstatus of the bot`" + "\nunity commands\n" + `${guildPrefix}avatar/${guildPrefix}av` + " `see a user's avatar`" + `\n${guildPrefix}bot-info` + " `see this bot's info`" + `\n${guildPrefix}panik ` + "`<first panik> <kalm> <2nd panik>`" + `\n${guildPrefix}reverse ` + "`<the text you want to reverse>`" + `\nserver admin commands\n${guildPrefix}setprefix` + " `<new-prefix>`" + "\nsupport commands" + "\n" + guildPrefix + "vote" + " `vote for " + client.user.tag + "`")
+    .setFooter("page 1/5")
     message.channel.send(helpembed, helpselect)
   } else if (message.content.startsWith(guildPrefix + "avatar" ) || message.content.startsWith(guildPrefix + "av")) {
     const mentionuser = message.mentions.users.first() || message.author
@@ -144,6 +149,12 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
 
   message.channel.send('Text with menu!', select);
 
+  } else if (message.content.startsWith(guildPrefix + "vote")) {
+    const voteembed = new Discord.MessageEmbed()
+    .setTitle("vote for " + client.user.tag)
+    .setAuthor(client.user.tag, client.user.displayAvatarURL())
+    .addField("vote for me here", `vote for ${client.user.tag} on top.gg\n[click here](https://top.gg/bot/${client.user.id}/vote)`)
+    message.lineReply(voteembed)
   }
 })
 
@@ -161,8 +172,8 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
       const helpembed = new Discord.MessageEmbed()
     .setTitle("help menu")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
-    .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`\n" + `OWNER&HQ SERVER ONLY COMMANDS\n ${config.prefix}setstatus` + " `setstatus of the bot`" + "\nunity commands\n" + `${guildPrefix}avatar/${guildPrefix}av` + " `see a user's avatar`" + `\n${guildPrefix}bot-info` + " `see this bot's info`" + `\n${guildPrefix}panik ` + "`<first panik> <kalm> <2nd panik>`" + `\n${guildPrefix}reverse ` + "`<the text you want to reverse>`" + `\nserver admin commands\n${guildPrefix}setprefix` + " `<new-prefix>`")
-    .setFooter("page 1/4")
+    .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`\n" + `OWNER&HQ SERVER ONLY COMMANDS\n ${config.prefix}setstatus` + " `setstatus of the bot`" + "\nunity commands\n" + `${guildPrefix}avatar/${guildPrefix}av` + " `see a user's avatar`" + `\n${guildPrefix}bot-info` + " `see this bot's info`" + `\n${guildPrefix}panik ` + "`<first panik> <kalm> <2nd panik>`" + `\n${guildPrefix}reverse ` + "`<the text you want to reverse>`" + `\nserver admin commands\n${guildPrefix}setprefix` + " `<new-prefix>`" + "\nsupport commands" + "\n" + guildPrefix + "vote" + " `vote for " + client.user.tag + "`")
+    .setFooter("page 1/5")
     await menu.reply.send("you selected page 1", true)
     await menu.message.edit(helpembed)
     } else if (menu.values[0] === "help2") {
@@ -170,7 +181,7 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
     .setTitle("help menu-fun commands")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
     .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`" + `\n${guildPrefix}panik ` + "`<first panik> <kalm> <2nd panik>`" + `\n${guildPrefix}reverse ` + "`<the text you want to reverse>`")
-    .setFooter("page 2/4")
+    .setFooter("page 2/5")
     await menu.reply.send("you selected page 2", true)
     await menu.message.edit(helpembed)
   } else if (menu.values[0] === "help3") {
@@ -178,7 +189,7 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
     .setTitle("help menu-admin commands")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
     .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`" + `\nserver admin commands\n${guildPrefix}setprefix` + " `<new-prefix>`")
-    .setFooter("page 3/4")
+    .setFooter("page 3/5")
     await menu.reply.send("you selected page 3", true)
     await menu.message.edit(helpembed)
   } else if (menu.values[0] === "help4") {
@@ -186,8 +197,16 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
     .setTitle("help menu-unity commands")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
     .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`" + "\nunity commands\n" + `${guildPrefix}avatar/${guildPrefix}av` + " `see a user's avatar`" + `\n${guildPrefix}bot-info` + " `see this bot's info`")
-    .setFooter("page 4/4")
+    .setFooter("page 4/5")
     await menu.reply.send("you selected page 4", true)
+    await menu.message.edit(helpembed)
+  } else if (menu.values[0] === "help5") {
+    const helpembed = new Discord.MessageEmbed()
+    .setTitle("help menu-support commands")
+    .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
+    .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`\n" + "support commands" + "\n" + guildPrefix + "vote" + " `vote for " + client.user.tag + "`")
+    .setFooter("page 5/5")
+    await menu.reply.send("you selected page 5", true)
     await menu.message.edit(helpembed)
   }
   }
