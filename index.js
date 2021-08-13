@@ -14,7 +14,7 @@ client.on('ready', () => hook.send('@everyone I am now alive!'))
 client.on("ready", () => {
   client.user.setPresence({
   activity:{
-    name:"d!help to start using me",
+    name:"d!help to start using me || 🇹🇼 OP",
     type: "PLAYING"
   },
   status:'dnd'
