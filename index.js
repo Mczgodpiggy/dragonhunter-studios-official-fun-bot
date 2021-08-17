@@ -5,7 +5,9 @@ const uptime = require("./247.js")
 const prefix = require('discord-prefix');
 require('discord-reply');
 require("better-sqlite3")
-const client = new Discord.Client();
+const client = new Discord.Client({
+  shards: 'auto',
+});
 const disbut = require ("discord-buttons")
 disbut(client)
 const fetch = require("node-fetch")
@@ -169,44 +171,44 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
   }
   } else if (menu.id === "help") {
     if (menu.values[0] === "help1") {
+      await menu.reply.defer(true)
       const helpembed = new Discord.MessageEmbed()
     .setTitle("help menu")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
     .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`\n" + `OWNER&HQ SERVER ONLY COMMANDS\n ${config.prefix}setstatus` + " `setstatus of the bot`" + "\nunity commands\n" + `${guildPrefix}avatar/${guildPrefix}av` + " `see a user's avatar`" + `\n${guildPrefix}bot-info` + " `see this bot's info`" + `\n${guildPrefix}panik ` + "`<first panik> <kalm> <2nd panik>`" + `\n${guildPrefix}reverse ` + "`<the text you want to reverse>`" + `\nserver admin commands\n${guildPrefix}setprefix` + " `<new-prefix>`" + "\nsupport commands" + "\n" + guildPrefix + "vote" + " `vote for " + client.user.tag + "`")
     .setFooter("page 1/5")
-    await menu.reply.send("you selected page 1", true)
     await menu.message.edit(helpembed)
     } else if (menu.values[0] === "help2") {
+      await menu.reply.defer(true)
       const helpembed = new Discord.MessageEmbed()
     .setTitle("help menu-fun commands")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
     .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`" + `\n${guildPrefix}panik ` + "`<first panik> <kalm> <2nd panik>`" + `\n${guildPrefix}reverse ` + "`<the text you want to reverse>`")
     .setFooter("page 2/5")
-    await menu.reply.send("you selected page 2", true)
     await menu.message.edit(helpembed)
   } else if (menu.values[0] === "help3") {
+    await menu.reply.defer(true)
     const helpembed = new Discord.MessageEmbed()
     .setTitle("help menu-admin commands")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
     .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`" + `\nserver admin commands\n${guildPrefix}setprefix` + " `<new-prefix>`")
     .setFooter("page 3/5")
-    await menu.reply.send("you selected page 3", true)
     await menu.message.edit(helpembed)
   } else if (menu.values[0] === "help4") {
+    await menu.reply.defer(true)
     const helpembed = new Discord.MessageEmbed()
     .setTitle("help menu-unity commands")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
     .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`" + "\nunity commands\n" + `${guildPrefix}avatar/${guildPrefix}av` + " `see a user's avatar`" + `\n${guildPrefix}bot-info` + " `see this bot's info`")
     .setFooter("page 4/5")
-    await menu.reply.send("you selected page 4", true)
     await menu.message.edit(helpembed)
   } else if (menu.values[0] === "help5") {
+    await menu.reply.defer(true)
     const helpembed = new Discord.MessageEmbed()
     .setTitle("help menu-support commands")
     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true}))
     .setDescription(`the prefix for this server is:` + "`" + guildPrefix + "`\n" + "support commands" + "\n" + guildPrefix + "vote" + " `vote for " + client.user.tag + "`")
     .setFooter("page 5/5")
-    await menu.reply.send("you selected page 5", true)
     await menu.message.edit(helpembed)
   }
   }
