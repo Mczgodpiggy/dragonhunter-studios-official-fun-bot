@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const { MessageActionRow, MessageSelectMenu } = require('discord.js');
 const config = require("./config.js");
 const uptime = require("./247.js")
 const prefix = require('discord-prefix');
@@ -38,6 +37,7 @@ client.on("message", message => {
   }
 })
 client.on("message", async message => {
+  if (message.author.bot) return;
 let guildPrefix = prefix.getPrefix(message.guild.id)
 if (!guildPrefix) guildPrefix = defaultPrefix;
   if (message.content.startsWith(guildPrefix + "help")) {
@@ -60,6 +60,7 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
     .setLabel('help page 4 unity commands')
     .setEmoji('🔧')
     .setValue('help4')
+    .setDescription("see the unity commands list!")
     let option5 = new disbut.MessageMenuOption()
     .setLabel('help page 5 support commands')
     .setEmoji('🆘')
@@ -112,11 +113,19 @@ if (!guildPrefix) guildPrefix = defaultPrefix;
         message.lineReply(`${data.result}`);
     }).catch(err => console.log(err))
   } else if (message.content.startsWith(guildPrefix + "rip")) {
-     
-      const ripembed = new Discord.MessageEmbed()
+    if (!message.mentions.users.first) { 
+    const ripembed = new Discord.MessageEmbed()
     .setTitle(`R.I.P ${message.author.tag}`)
     .setImage(`https://dinosaur.ml/overlay/rip/?image=${message.author.displayAvatarURL()}?size=2048`)
     message.channel.send(ripembed)
+    } else if (message.mentions.users.first) {
+      const user = message.mentions.users.first();
+      const ripembed = new Discord.MessageEmbed()
+    .setTitle(`R.I.P ${message.author.tag}`)
+    .setImage(`https://dinosaur.ml/overlay/rip/?image=${user.displayAvatarURL()}?size=2048`)
+    message.channel.send(ripembed)
+    message.channel.send(`https://dinosaur.ml/overlay/rip/?image=${user.displayAvatarURL()}?size=2048`)
+    }
     
   } else if (message.content.startsWith(guildPrefix + "setprefix")) {
     if (!message.member.hasPermission('ADMINISTRATOR')) return message.lineReply('you don\'t have admin perm to use this command');
